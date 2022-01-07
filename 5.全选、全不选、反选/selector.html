@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>全选、全不选、反选</title>
+	</head>
+	<body>
+		<form action="" method="post">
+			<p><input type="checkbox" name="" id="" value="尼古拉斯·赵四" />尼古拉斯·赵四</p>
+			<p><input type="checkbox" name="" id="" value="尼古拉斯·赵五" />尼古拉斯·赵五</p>
+			<p><input type="checkbox" name="" id="" value="尼古拉斯·赵六" />尼古拉斯·赵六</p>
+			<p><input type="checkbox" name="" id="" value="尼古拉斯·赵七" />尼古拉斯·赵七</p>
+
+		</form>
+		<button onclick="getAll(0)">全选</button>
+		<button onclick="getAll(1)">全不选</button>
+		<button onclick="getAll(2)">反选</button>
+
+		<script type="text/javascript">
+			/*
+			//选中三个形式，1、用户点击，2、在标签上添加checked属性 3、JS中checked=true
+			let button = document.getElementsByTagName('button');
+			let input = document.getElementsByTagName('input');
+			//全选
+			button[0].onclick = function() {
+				for (let i = 0; i < input.length; i++) {
+			
+					input[i].checked = true;
+				}
+			}
+			
+			//全不选
+			button[1].onclick = function() {
+				for (let i = 0; i < input.length; i++) {
+			
+					input[i].checked = false;
+				}
+			}
+			
+			//反选
+			
+			button[2].onclick = function() {
+				for (let i = 0; i < input.length; i++) {
+			
+					input[i].checked = !input[i].checked;
+				}
+			}
+			
+			*/
+
+
+			//方法二：
+			//封装成函数进行优化
+			let input = document.getElementsByTagName('input');
+			function getAll(num) {
+				for (let i = 0; i < input.length; i++) {
+					if (num == 0) {
+						input[i].checked = true;
+					} else if (num == 1) {
+
+						input[i].checked = false;
+					} else {
+
+						input[i].checked = !input[i].checked;
+					}
+				}
+
+			}
+		</script>
+	</body>
+</html>

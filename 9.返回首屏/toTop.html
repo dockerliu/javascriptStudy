@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>返回首屏</title>
+		<style type="text/css">
+			.content {
+				height: 1900px;
+			}
+
+			.goTop {
+				width: 100px;
+				height: 100px;
+				background-color: #bbb;
+				text-align: center;
+				line-height: 100px;
+				position: fixed;
+				bottom: 100px;
+				right: 20px;
+				display: none;
+
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content">
+			<h2>返回首页</h2>
+			<div class="goTop">
+				返回
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			//逻辑：当用户滑动到400px,返回按钮显示，小于400px隐藏返回按钮
+			//点击 返回按钮时滚动条恢复原位
+			//让body或html滚动
+			let goTop=document.getElementsByClassName('goTop')[0];
+			window.onscroll=function(){
+				let res=document.body.scrollTop||document.documentElement.scrollTop;
+				if(res>=400){
+					goTop.style.display='block';
+				}else{
+					goTop.style.display='none';
+				}
+			}
+			goTop.onclick=function(){
+				document.body.scrollTop=0;
+				document.documentElement.scrollTop=0;
+			}
+		</script>
+	</body>
+</html>

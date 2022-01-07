@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>20、飞机大战</title>
+		<style type="text/css">
+			#box {
+				width: 512px;
+				height: 536px;
+				border: 1px solid red;
+				background: url(bg2.jpg) no-repeat 0 -1000px;
+				position: relative;
+			}
+
+			#img {
+				position: absolute;
+				bottom: 100px;
+				left: 200px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<img src="me.png" id="img">
+		</div>
+
+		<script type="text/javascript">
+			// 逻辑
+			// 1.背景图片向下移动
+			let box = document.getElementById('box');
+			let img = document.getElementById('img');
+			//box.style.backgroundPosition="0px 100px";
+			let num = 0;
+			setInterval(() => {
+				num++;
+				if (num >= 1000) num = 0;
+				box.style.backgroundPosition = "0px " + (-1000 + num) + "px";
+			}, 100);
+			//2.实现小飞机的移动
+			window.document.onkeydown = function(e) {
+				let env = e || window.event; //兼容
+				console.log(e);
+				//2.1向前 keyCode 38
+				if (env.keyCode == 38) {
+					// offsetTop  一个元素到父级的顶部距离（父级必须具有position属性）
+					let top=img.offsetTop-10;
+					if(top<20) top=20;
+					img.style.top = top+'px';
+				}
+				if(env.keyCode==40){
+					let top=img.offsetTop+10;
+					if(top>430) top=430;
+					console.log(top)
+					img.style.top = top+'px';
+				}
+				if(env.keyCode==37){
+					let top=img.offsetLeft-10;
+					if(top<10) top=10;
+					console.log(top)
+					img.style.left = top+'px';
+				}
+				if(env.keyCode==39){
+					let top=img.offsetLeft+10;
+					if(top>390) top=390;
+					console.log(top)
+					img.style.left = top+'px';
+				}
+			}
+		</script>
+	</body>
+</html>

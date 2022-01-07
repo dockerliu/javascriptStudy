@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>百分比进度条</title>
+		<style type="text/css">
+			.fa {
+				width: 400px;
+				height: 40px;
+				//background-color: #f0f;
+				border: 1px solid #f0f;
+				margin-bottom: 30px;
+
+			}
+
+			.son {
+				width: 0px;
+				height: 40px;
+				background-color: #f0f;
+				text-align: center;
+				line-height: 40px;
+			}
+
+			button {
+				margin: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="fa">
+			<div class="son">
+				<span>0</span><span>%</span>
+			</div>
+		</div>
+		<button type="button" id="but">安装</button>
+
+		<script type="text/javascript">
+			//逻辑：利用定时器来进行递增操作（width和百分数）
+			//当变量达到400px时停止定时
+			let but = document.getElementById('but');
+			let div = document.getElementsByTagName('div');
+			let span = document.getElementsByTagName('span');
+			let timer = null;
+			but.onclick = function() {
+				let num = 10;
+				if (timer != null) return;
+				timer = setInterval(() => {
+					num++;
+					//给宽赋值
+					div[1].style.width = num + 'px';
+					span[0].innerText = Math.round(num/4);
+					if (num == 400) {
+						clearInterval(timer)
+						return;
+					}
+
+				}, 100)
+			}
+		</script>
+	</body>
+</html>

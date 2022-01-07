@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>14.三级导航菜单</title>
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+			}
+
+			ul {
+				list-style: none;
+			}
+
+			a {
+				color: #fff;
+				text-decoration: none;
+				display: block;
+			}
+
+			#ul1 {
+				width: 500px;
+				font-size: 14px;
+				color: #fff;
+				line-height: 30px;
+				text-align: center;
+				margin: 0 auto;
+				margin-top: 50px;
+			}
+
+			#ul1 li {
+				display: inline-block;
+				float: left;
+				width: 98px;
+				height: 30px;
+				background: #f60;
+				border: 1px solid #fff;
+			}
+
+			#ul li:hover {
+				background: #666;
+
+			}
+
+			#ul1 .ul2 {
+				display: none;
+				position: relative;
+				width: 100px;
+			}
+
+			#ul1 .ul2 li {
+				background: gold;
+				position: relative;
+			}
+
+			#ul1 .ul2 li:hover {
+				background: #F6F;
+			}
+
+			#ul1 .ul2 .ul3 li:hover {
+				background: skyblue;
+			}
+
+			#ul1 .ul2 .ul3 li {
+				background: seagreen;
+			}
+
+			#ul1 .ul2 .ul3 {
+				position: absolute;
+				left: 98px;
+				top: 0;
+				display: none;
+				width: 100px;
+				height: 90px;
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="ul1">
+			<!-- <li class="li1">
+				<a href="#">一级导航1</a>
+				<ul class="ul2">
+					<li class="li2">
+						<a href="#">二级导航1</a>
+						<ul class="ul3">
+							<li class="li3">
+								<a href="#">三级导航1</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</li> -->
+		</ul>
+
+
+		<script type="text/javascript">
+			//1.先获取数据
+			let xml = new XMLHttpRequest();
+			xml.open('get', 'nav.json', true);
+			xml.send();
+			xml.onreadystatechange = function() {
+				// console.log(xml.status);//服务器状态
+				// console.log(xml.readyState);//ajax状态
+				if (xml.status == 200 && xml.readyState == 4) {
+					let datas = JSON.parse(xml.responseText).data; //json格式字符串
+					//console.log(datas);
+					let li1 = '';
+					datas.forEach((first) => {
+						console.log(first); //第一层
+						let li2 = '';
+						first.content.forEach((second) => {
+							//console.log(second);//第二层
+
+							let li3 = "";
+							second.content.forEach((third) => {
+								//console.log(third);//第三层
+								li3 += '<li class="li3">' +
+									'<a href="#">' + third + '</a>' +
+									'</li>';
+							})
+
+							li2 += '<li class="li2">' +
+								'<a href="#">' + second.title + '</a>' +
+								'<ul class="ul3">' +
+								li3 +
+								'</ul></li>';
+						})
+						li1 += '<li class="li1">' +
+							'<a href="#">' + first.title + '</a>' +
+							'<ul class="ul2">' +
+							li2 +
+							'</ul></li>';
+					})
+
+					//把所有的数据赋值
+					let ul1 = document.getElementById('ul1');
+					ul1.innerHTML = li1;
+
+					//显示和隐藏功能
+					//鼠标移入li1就让ul2显示,反之隐藏
+					let ul2 = document.getElementsByClassName('ul2');
+					let one = document.getElementsByClassName('li1');
+					showAndHide(one, ul2);
+					let ul3 = document.getElementsByClassName('ul3');
+					let two = document.getElementsByClassName('li2');
+					showAndHide(two, ul3);
+				}
+			}
+
+			//显示和隐藏菜单方法
+			function showAndHide(lis, uls) {
+				for (let i = 0; i < lis.length; i++) {
+					lis[i].index = i; //给ul1下标赋值
+					lis[i].onmouseover = function() {
+						uls[lis[i].index].style.display = 'block';
+					}
+					lis[i].onmouseleave = function() {
+						uls[lis[i].index].style.display = 'none';
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

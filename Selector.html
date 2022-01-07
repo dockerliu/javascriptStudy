@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>JS选择器</title>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+			integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+		<style type="text/css">
+			#divMove {
+				width: 500px;
+				height: 500px;
+				border: 1px solid red;
+			}
+		</style>
+	</head>
+	<body>
+		mouse:<span id="mouseMove"></span>
+		<div id="divMove">
+
+		</div>
+		<ul id="test-ul">
+	<li class="js">JavaScript</li>
+	<li name="python">Python</li>
+</ul>
+		<script type="text/javascript">
+			/*
+			//原生JS选择器
+			//标签
+			document.getElementsByTagName();
+			//ID
+			document.getElementById();
+			//类
+			document.getElementsByClassName();
+		
+		
+		//jQuery
+		//标签选择器
+		$('p').click();
+		//ID选择器
+		$('#id').click();
+		//Class选择器
+		$('.class').click();
+		
+		//当网页加载完成后事件
+		$(document).ready(Function(){});
+		*/
+			//当网页加载完成后事件简写
+			$(function() {
+				$('#divMove').mousemove(function(e) {
+					$('#mouseMove').text('X:' + e.pageX + ' ,Y:' + e.pageY)
+				})
+			});
+
+
+			$('#test-ul li[name=python]').text(); //获得值
+		</script>
+	</body>
+</html>

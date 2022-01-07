@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>4.tab选项卡功能</title>
+		<style type="text/css">
+			ul,
+			li {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			ul {
+				overflow: hidden;
+			}
+
+			li {
+				width: 100px;
+				height: 40px;
+				background-color: #EEEEEE;
+				border: 1px solid #CCCCCC;
+				float: left;
+				line-height: 40px;
+				text-align: center;
+			}
+
+			div {
+				width: 406px;
+				height: 406px;
+				border: 1px solid #CCCCCC;
+			}
+
+			img {
+				width: 406px;
+				height: 406px;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li>大桔</li>
+			<li>英短</li>
+			<li>美智</li>
+			<li>布偶</li>
+		</ul>
+		<div id="div1">
+			<img src="ju.jpg" alt="" style="display: block;">
+			<img src="ying.jpg">
+			<img src="hu.jpg">
+			<img src="bu.jpg">
+		</div>
+
+		<script type="text/javascript">
+			// 逻辑：1.移动到哪个选项卡上，自己的背景颜色要改变  
+			//      2.对应的内容区域要显示
+			// 同理，移出时，背景颜色恢复，对应内容区域隐藏
+			let li=document.getElementsByTagName('li');
+			let img=document.getElementsByTagName('img');
+			
+			for(let i=0;i<li.length;i++){
+				//移入改变背景颜色
+				li[i].onmouseover=function(){
+					li[i].index=i;//元素数组设置下标
+					li[i].style.backgroundColor='yellow';
+					for(j=0;j<img.length;j++)					
+					img[j].style.display='none';
+					img[this.index].style.display='block';
+				}
+				
+				//移出恢复背景颜色
+				li[i].onmouseleave=function(){
+					li[i].style.backgroundColor="#EEEEEE";
+					//img[this.index].style.display="none";
+				}
+			}
+		</script>
+	</body>
+</html>

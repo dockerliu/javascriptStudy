@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>12.鼠标绑定小盒子</title>
+	</head>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		div{
+			width: 100px;
+			height: 100px;
+			background-color: #FF00FF;
+			position: absolute;
+			left: 0px;
+			top: 0px;
+		}
+	</style>
+	<body>
+		
+	<h2>鼠标绑定小盒子</h2>
+	<div id="div">
+		
+	</div>
+	
+	<script type="text/javascript">
+		//逻辑：先获取鼠标X、Y坐标
+		//给div进行位置赋值 left/top
+		let div=document.getElementById('div');
+		document.onmousemove=function(e){
+			let env=e||window.event;//兼容
+			//console.log(env);
+			div.style.left= env.clientX-div.clientWidth/2+'px';
+			div.style.top= env.clientY-div.clientHeight/2+'px';
+		}
+	</script>
+	</body>
+</html>

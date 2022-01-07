@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>评论敏感词过滤</title>
+		<style type="text/css">
+			
+			#area{
+				width: 200px;
+				height: 200px;
+				border:1px solid #CCCCCC;
+			}
+			#res{
+				
+				width: 200px;
+				height: 200px;
+				border: 1px solid #ccc;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>敏感词过滤</h2>
+		<p>
+			<textarea id="area" rows="10" cols="30"></textarea>
+		</p>
+		<p><input type="submit" name="" id="input" value="发布" /></p>
+		<p id="res"></p>
+		
+		<script type="text/javascript">
+			//逻辑：用户输入值，如果与正则匹配到了，则进行替换
+			let area=document.getElementById('area');
+			let input=document.getElementById('input');
+			let res=document.getElementById('res');
+			let reg=/金三胖|妈的/g;
+			input.onclick=function(){
+				res.innerText= area.value.replace(reg,'***');
+			}
+		</script>
+	</body>
+</html>

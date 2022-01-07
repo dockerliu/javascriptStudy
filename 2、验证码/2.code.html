@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>验证码</title>
+		<style type="text/css">
+			.v_code {
+				width: 300px;
+				height: 100px;
+				margin: 0 30px;
+				padding: 10px;
+				font-size: 22px;
+			}
+
+			.code {
+				background-color: #e4ff98;
+				color: #FF0000;
+				font-size: 40px;
+			}
+
+			#button1 {
+				padding: 5px;
+				margin: 5px;
+			}
+
+			#linkbt {
+				color: aqua;
+			}
+
+			.input_code {
+				background-color: #ffff7f;
+				margin: 10px;
+				width: 250px;
+			}
+
+			#inputCode {
+				width: 100px;
+				font-size: 22px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="v_code">
+			<div class="code_show">
+				<span class="code" id="checkCode">adF34y</span>
+				<a id="linkbt">看不清换一张</a>
+			</div>
+			<div class="input_code">
+				<label >验证码：</label>
+				<input type="text" id="inputCode" />
+				<span id="text_show"></span>
+			</div>
+			<input type="button" id="button1" value="确定" />
+		</div>
+		<script type="text/javascript">
+		
+		//生成验证码
+			function getCode() {
+				//1、生成验证码
+				//6位数验证码：0-9 a-f
+				var arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
+				var str = '';
+				for (i = 0; i < 6; i++) {
+					//Math.random()*(15-0)+0//大数减小数+小数 这样会有小数
+					var num = Math.round(Math.random() * (15 - 0) + 0); //大数减小数+小数 这样会有小数
+					//console.log(num)
+					str += arr[num];
+				}
+					console.log(str)
+					return str;
+			}
+			
+			window.onload=function(){
+				var res=getCode();
+				document.getElementById('checkCode').innerText=res;
+			}
+			
+			//点击事件
+			document.getElementById('linkbt').onclick=function(){
+				var res=getCode();
+				document.getElementById('checkCode').innerText=res;
+			}
+			
+			document.getElementById('button1').onclick=function(){
+				//提交进行对比
+				let code= document.getElementById('checkCode').innerText;
+				let inputCode= document.getElementById('inputCode').value;
+				if(code!=inputCode){
+					alert('验证码输入不正确！');
+					document.getElementById('inputCode').value='';
+					return false;
+					
+				}
+			}
+			
+		</script>
+	</body>
+</html>

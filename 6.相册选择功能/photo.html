@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>相册选择功能</title>
+		<style type="text/css">
+			
+			img{
+				width: 415px;
+				height: 400px;
+			}
+			.small>img{
+				width: 100px;
+				height: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="div1">
+			<img src="img/ju.jpg" >
+		</div>
+		<div class="small">
+			<img src="img/ju.jpg" alt="" >
+			<img src="img/ying.jpg" alt="" >
+			<img src="img/hu.jpg" alt="" >
+			<img src="img/bu.jpg" alt="" >
+		</div>
+		
+		<script type="text/javascript">
+			//逻辑：当用户鼠标放在哪个小图上就把小图的SRC赋值给大图显示
+			//图片的元素.src=''
+			let imgs=document.getElementsByTagName('img');
+			for(let i=1;i<imgs.length;i++){
+				imgs[i].onmouseover=function(){
+					//把小图的Src赋值给大图
+					imgs[0].src=imgs[i].src;
+					//imgs[i].style.border='1px solid #ccc';
+				}
+			}
+		</script>
+	</body>
+</html>

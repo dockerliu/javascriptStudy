@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>10秒倒计时</title>
+		<style type="text/css">
+			div {
+				width: 200px;
+				height: 280px;
+				background-color: #eee;
+				padding: 20px;
+				margin: 0 auto;
+			}
+
+			button {
+				margin: 30px 25px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div">
+			<p>商品：Web前端课程</p>
+			<p>原价：1980元</p>
+			<p>现价：1.98元</p>
+			<p>内容：HTML、CSS、‘JS’</p>
+			<p>地址：湖北武汉</p>
+			<p>
+				<button type="cancel">取消</button>
+				<button type="pay">支付</button>
+			</p>
+		</div>
+
+
+		<script type="text/javascript">
+			//1、点击支付出现确认框
+			document.getElementsByTagName('button')[1].onclick = function() {
+				console.log('ok')
+				let res = window.confirm('你确定要支付吗？')
+
+				if (res) {
+					location.href = 'success.html'
+				}
+			}
+		</script>
+	</body>
+</html>
